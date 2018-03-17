@@ -1,0 +1,11 @@
+a{
+    border-top: 1px solid transparent ;
+}
+a:hover{
+    transition: 1s;
+    border-top: 1px solid rgb(46, 134, 105);
+}
+.active{
+    margin-right: 4px;
+    border-top: 1px solid aqua;
+}
