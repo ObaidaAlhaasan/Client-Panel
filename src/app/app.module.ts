@@ -14,11 +14,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuth } from 'angularfire2/auth';
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCL5FEUMNoLCzEuNdeCELcgS5yKxGbpfWE',
-  authDomain: 'client-panel-852ed.firebaseapp.com',
-  databaseURL: 'https://client-panel-852ed.firebaseio.com',
-  storageBucket: 'client-panel-852ed.appspot.com',
-  messagingSenderId: '635269230963'
+//  add you r firebase config
 };
 
 //  Component imports
