@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <a *ngIf="isLoggedIn" class="navbar-brand" style="color:gold">Shadow616
+  <a class="navbar-brand" style="color:gold">Shadow616
     <i class="fa fa-magic fa-lg fa-fw"></i>
   </a>
   <div class="container">
@@ -12,14 +12,21 @@
         <li class="nav-item " *ngIf="isLoggedIn">
           <a class="nav-link" routerLinkActive="active" routerLink="/">DashBoard</a>
         </li>
+        <li class="nav-item " *ngIf="isLoggedIn">
+            <a class="nav-link" routerLink="/settings">Settings  <i class="fa fa-gear" aria-hidden="true"></i> 
+            </a>
+          </li>
+          
       </ul>
       <ul class="navbar-nav ml-auto">
-
+        <li class="nav-item " *ngIf="isLoggedIn">
+          <a class="nav-link">{{LoggedInUser}}</a>
+        </li>
         <li class="nav-item " *ngIf="!isLoggedIn">
           <a class="nav-link" routerLinkActive="active" routerLink="login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+          <a class="nav-link" routerLinkActive="active" *ngIf="isLoggedIn && showRegister" routerLink="/register">Register</a>
         </li>
         <li class="nav-item">
           <a style="cursor:pointer;" class="nav-link" *ngIf="isLoggedIn" (click)="Logout()">Logout</a>

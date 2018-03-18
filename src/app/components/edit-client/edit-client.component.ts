@@ -3,6 +3,7 @@ import { ClientModel } from '../../models/client.models';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClientService } from '../../services/client.service';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -14,16 +15,15 @@ export class EditClientComponent implements OnInit {
   id: string;
   showBlanceUpdateEdit: Boolean = false;
   constructor(public flash_messages: FlashMessagesService, private router: Router
-    , private client_service: ClientService, private acitva_router: ActivatedRoute) { }
+    , private client_service: ClientService, private acitva_router: ActivatedRoute, private settings_service: SettingsService) { }
 
   ngOnInit() {
     this.id = this.acitva_router.snapshot.params['id'];
     this.client_service.getClient(this.id).subscribe(client => {
       // tslint:disable-next-line:triple-equals
-
       this.clients = client;
     });
-
+    this.showBlanceUpdateEdit = this.settings_service.getSettings().disableBalanceOnEdit;
   }
   onSubmit(data: ClientModel, valide: boolean) {
 

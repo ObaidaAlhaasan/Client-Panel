@@ -19,5 +19,15 @@ export class AuthServiceService {
   logout() {
     this.Anugular2_auth_service.auth.signOut();
   }
+
+  //  createZZnewUser
+
+  createUser(email: string, pass: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.Anugular2_auth_service.auth.createUserWithEmailAndPassword(email, pass).then(userData => resolve(userData), err => reject(err));
+    });
+  }
+
+
   //  End
 }

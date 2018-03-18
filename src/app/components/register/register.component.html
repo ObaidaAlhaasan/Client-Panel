@@ -1,3 +1,39 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-xs-8 offset-md-2">
+      <div class="card" style="background-color:cadetblue; border-color:darkblue;">
+        <div class="card-header text-center badge-secondary">
+          <h2>rigister and injoy with us
+            <i class="fa fa-smile-o fa-lg fa-fw"></i>
+          </h2>
+
+        </div>
+        <div class="text-center">
+            <img  src="assets/images/2.jpg" alt="rigester" width="80%" height="250px">
+        </div>
+        <div class="card-body">
+            <form #myForm="ngForm" (submit)="onSubmit(myForm)">
+                <div class="form-group">
+                  <label for="email">E-mail
+                    <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                  </label>
+                  <input required type="email" class="form-control" name="email" email #email="ngModel" ngModel="">
+                  <p class="alert alert-danger" *ngIf="email.invalid&& email.touched">Error This Field Is Required and  should Be a valid Email</p>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </label>
+                  <input required type="password" class="form-control" name="password" #password="ngModel" ngModel="">
+                  <p class="alert alert-danger" *ngIf="password.invalid&& password.touched">Error This Field Is Required </p>
+                </div>
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Login </button>
+                </div>
+              </form>
+              <br><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

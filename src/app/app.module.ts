@@ -40,6 +40,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ClientService } from './services/client.service';
 import { AuthServiceService } from './services/auth-service.service';
 import { AuthGuard } from './guards/auth-guards';
+import { RegisterGuard } from './guards/register-guard';
+
+import { SettingsService } from './services/settings.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { AuthGuard } from './guards/auth-guards';
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [AngularFireAuth, FlashMessagesService, AuthServiceService, AngularFireDatabase, ClientService, AuthGuard],
+  providers: [AngularFireAuth, FlashMessagesService,
+    AuthServiceService, AngularFireDatabase, ClientService,
+    AuthGuard, SettingsService, RegisterGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
