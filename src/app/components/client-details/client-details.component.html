@@ -1,3 +1,58 @@
-<p>
-  client-details works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6">
+      <a [routerLink]="['/']" class="btn btn-secondary">Go Back
+        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-6">
+
+      <div class="btn-groupt pull-right ">
+        <a [routerLink]="['/edit-client/'+id]" class="btn btn-info">
+          Edit Client
+        </a>
+        <button class="btn btn-danger" (click)="onDeleteClick(id)">Delete Client</button>
+      </div>
+    </div>
+    <hr>
+    <div class="col-xs-12 col-md-12">
+      <div *ngIf="client" class="card">
+
+        <h2 class="card-header">{{client.firstName}} {{client.lastName}}</h2>
+        <div class="card-block">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="btn-light badge-light">Client ID {{id}}</h4>
+            </div>
+            <div class="col-md-4">
+              <h4>
+
+                Balance:
+                <span [class.text-danger]="hasBalance" [class.text-success]="!hasBalance" class="badge-pill badge-light">
+                  {{client.balance | currency:"USD":'true'}}
+                </span>
+                <a class="btn" (click)="showBlanceUpdateInput = !showBlanceUpdateInput">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+              </h4>
+              <div class="clearfix">
+                <form *ngIf="showBlanceUpdateInput" (submit)="updateBalance(id)">
+                  <div class="form-group clearfix">
+                    <input type="text" [value]="client.balance" name="balance" [(ngModel)]="client.balance" class="form-inline pull-left">
+                  </div>
+                  <button class="btn btn-info" type="submit">update
+                    <i class="fa fa-save    "></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">contact Email : {{client.email}}</li>
+            <li class="list-group-item">contact phone : {{client.phone}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

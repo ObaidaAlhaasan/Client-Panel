@@ -1,10 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="clients">
   <br>
-
   <div class="row  badge-light" *ngIf="clients&&clients.length>0">
     <div class="col-xs-6 col-md-6">
       <h2 class="badge-light">
-        <strong class="text-center">User Items</strong>
+        <strong class="text-center">User Clients
+          <i class="fa fa-users fa-lg fa-fw"></i>
+        </strong>
       </h2>
       <br>
       <br>
@@ -19,7 +20,7 @@
     </div>
   </div>
   <div class="row">
-    <table class="table">
+    <table class="table ">
 
       <thead class="thead-dark">
         <tr>
@@ -28,29 +29,39 @@
           <th> Phone </th>
           <th>Curruncy</th>
           <th></th>
-          <th></th>
+          <th>
+            <app-sidebar></app-sidebar>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <p *ngIf="!clients" class="text-center badge-pill badge-info">
-          <strong>Loading....</strong>
-        </p>
 
-        <tr *ngFor="let item of clients">
-          <td>{{item.key}}</td>
-          <td>{{item.firstName}} {{item.lastName}} </td>
-          <td> {{item.phone }} </td>
-          <td> {{item.balance | currency:"USD":'true'}} </td>
-          <td>Details (+) </td>
-          <td class="badge-light">ADD Item
-            <i class="badge-success badge-pill ">+</i>
-          </td>
-        </tr>
+          <tr *ngFor="let item of clients">
+            <td>{{item?.$key | slice:0:5}}</td>
+            <td>{{item?.firstName}} {{item?.lastName}} </td>
+            <td> {{item?.phone }} </td>
+            <td> {{item?.balance | currency:"USD":'true'}} </td>
+            <td>  <a  [routerLink]="['/client/'+[item.$key]]" class="btn btn-light">
+                Details <i class="fa fa-dot-circle-o fa-lg fa-fw"></i>
+            </a>  </td>
+          </tr>
+
       </tbody>
     </table>
+    <div class="pull-right">
+    </div>
   </div>
 
 </div>
-<div class="row" *ngIf="clients.length==0 || !clients">
-  <h1 class="text-center text-success">No Clients Right Now !</h1>
+  
+<div class="container">
+  <div class="row">
+    <div class="text-center alert alert-danger" *ngIf="errs">
+        {{errs}}
+    </div>
+    <div class="text-center alert alert-info" *ngIf="!clients && !errs">
+        <h2>Loading ...<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> </h2>
+    </div>
+    
+  </div>
 </div>

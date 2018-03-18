@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+//  angular2-messages
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -34,7 +38,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 //  Services Import
 import { ClientService } from './services/client.service';
-
+import { AuthServiceService } from './services/auth-service.service';
+import { AuthGuard } from './guards/auth-guards';
 
 @NgModule({
   declarations: [
@@ -54,10 +59,12 @@ import { ClientService } from './services/client.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlashMessagesModule,
+    FormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [AngularFireAuth, AngularFireDatabase, ClientService],
+  providers: [AngularFireAuth, FlashMessagesService, AuthServiceService, AngularFireDatabase, ClientService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

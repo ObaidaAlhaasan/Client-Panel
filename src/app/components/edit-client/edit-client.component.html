@@ -1,3 +1,100 @@
-<p>
-  edit-client works!
-</p>
+<div class="container" *ngIf="clients">
+  <div class="row">
+    <div class="col-xs-2 col-md-2">
+      <br>
+      <a [routerLink]="['/client/'+id]" class="btn btn-primary btn-block">Go to Client
+        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+      </a>
+    </div>
+    <div class="col-xs-11 col-md-11">
+      <div class="card ">
+        <div class="card-header badge-light">
+          <h3 class="text-center">Edit Client
+            <small>it's easy...</small>
+            <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div>
+            <form #myForm="ngForm" (ngSubmit)="onSubmit(clients , myForm.valid)">
+              <div class="form-group ">
+                <div class="row">
+                  <div class="col-xs-6 col-md-6">
+                    <label for="inputName" class="col-form-label">First Name </label>
+                    <div class="col-sm-11 col-md-11">
+                      <input required minlength="3" [(ngModel)]="clients.firstName" name="firstName" #firstName="ngModel" type="text" class="form-control"
+                        id="inputName" placeholder="Enter First Name">
+                      <p class="alert alert-danger" *ngIf="firstName.invalid&& firstName.touched">First Name Required And atleast 3 chars</p>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-md-6">
+                    <label for="lastName" class=" col-form-label">last Name </label>
+                    <div class="col-sm-11 col-md-11">
+                      <input required minlength="3" type="text" class="form-control" name="lastName" id="lastName" #lastName="ngModel" [(ngModel)]="clients.lastName"
+                        placeholder="Enter Last Name">
+                      <p class="alert alert-danger" *ngIf="lastName.invalid&& lastName.touched">Last Name Required And atleast 3 chars</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group ">
+                <label for="email" class=" col-form-label">Email </label>
+                <div class="col-sm-12 col-md-12">
+                  <input required minlength="6" email type="email" class="form-control" name="email" id="email" #email="ngModel" [(ngModel)]="clients.email"
+                    placeholder="Enter Email">
+                  <p class="alert alert-danger" *ngIf="email.invalid&& email.touched">
+                    <strong *ngIf="email.touched&&email.invalid
+                      &&email.errors?.required &&!email.errors.minlength">E-mail Is required Please</strong>
+                    <strong *ngIf="email.invalid&& !email.errors.required">invalid Email Address</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group ">
+                <label for="number" class=" col-form-label">phone Number </label>
+                <div class="col-sm-12 col-md-12">
+                  <input minlength="10" type="text" class="form-control" name="number" id="number" #number="ngModel" [(ngModel)]="clients.phone"
+                    placeholder="Enter Phone Number">
+                  <p class="alert alert-danger" *ngIf="number.invalid&& number.touched">
+                    <strong>
+                      invalid phone Number</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group ">
+                <label for="balllance" class=" col-form-label"> Ballance </label>
+                <div class="col-sm-12 col-md-12">
+                  <input [disabled]="!showBlanceUpdateEdit" min="0" required type="number" class="form-control" name="balllance" id="balllance"
+                    #balllance="ngModel" [(ngModel)]="clients.balance">
+                  <p class="alert alert-danger" *ngIf="balllance.invalid&& balllance.touched">
+                    <strong>
+                      invalid Currency Ballance</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="form-group ">
+                <div class=" col-sm-16 col-md-6">
+                  <button [disabled]="myForm.invalid" type="submit" class="btn btn-success btn-block">Edit Item
+                    <i class="fa fa-penciel    "></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!clients">
+  <div class="text-center text-info">
+    <h2>
+      Loading...
+      <i class="fa fa-spinner fa-fw fa-2x fa-spin" aria-hidden="true"></i>
+    </h2>
+  </div>
+</div>

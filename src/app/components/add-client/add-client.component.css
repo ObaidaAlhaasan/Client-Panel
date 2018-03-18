@@ -1,0 +1,9 @@
+.alert{
+    border-bottom: 2px solid firebrick;
+    padding: 2px;
+}
+label{
+    border-bottom: rgb(125, 184, 243) 1px solid;
+    padding: 0;
+    margin-bottom: 10px;
+}
